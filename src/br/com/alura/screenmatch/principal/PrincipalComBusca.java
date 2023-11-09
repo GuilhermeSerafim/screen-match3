@@ -16,13 +16,15 @@ public class PrincipalComBusca {
 
         String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=c0e431f9";
 
+        //Criando client para realizar a requisição
         HttpClient client = HttpClient.newHttpClient();
+        //Requisição do cliente
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(endereco))
                 .build();
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        //Resposta
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.body());
-        System.out.printf("");
     }
 }
