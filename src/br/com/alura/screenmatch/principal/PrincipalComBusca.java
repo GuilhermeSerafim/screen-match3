@@ -42,7 +42,7 @@ public class PrincipalComBusca {
         Titulo meuTitulo = gson.fromJson(json, Titulo.class);
         //O resultado aqui deu nulo, por que quando puxamos o nome, ele dá title, e não nome
         //Também o ano, ele dá year, não data de lançamento
-        System.out.println("Titulo: " + meuTitulo.getNome());
+        System.out.println(meuTitulo);
 
         //Para isso temos que converter esses verbos que estão em inglês para o que está na nossa classe Titulo
         //Obs: Por padrão o Json, ele lê cada objeto, se não foi definido algo para o mesmo, ele pula para o próximo
