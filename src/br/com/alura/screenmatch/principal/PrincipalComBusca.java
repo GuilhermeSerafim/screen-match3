@@ -1,7 +1,10 @@
 package br.com.alura.screenmatch.principal;
 
 import br.com.alura.screenmatch.modelos.Titulo;
+import br.com.alura.screenmatch.modelos.TituloOmdb;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -38,14 +41,13 @@ public class PrincipalComBusca {
         System.out.println(json);
 
 
-        Gson gson = new Gson();
-        Titulo meuTitulo = gson.fromJson(json, Titulo.class);
-        //O resultado aqui deu nulo, por que quando puxamos o nome, ele dá title, e não nome
-        //Também o ano, ele dá year, não data de lançamento
-        System.out.println(meuTitulo);
+        Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+        TituloOmdb meuTituloOmdb = gson.fromJson(json, TituloOmdb.class);
+        System.out.println(meuTituloOmdb);
 
-        //Para isso temos que converter esses verbos que estão em inglês para o que está na nossa classe Titulo
-        //Obs: Por padrão o Json, ele lê cada objeto, se não foi definido algo para o mesmo, ele pula para o próximo
+        Titulo meuTitulo = new Titulo(meuTituloOmdb);
+        System.out.println("Titulo convertido:");
+        System.out.println(meuTitulo);
 
     }
 }

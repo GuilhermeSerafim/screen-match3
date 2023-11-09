@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo> {
     //Serializando dados
+    //Serializar é um verbo usado quando transformamos objetos ou estruturas de memória em texto - não importa se é JSON, binário ou XML.
+    // Com a anotação @SerializedName avisamos ao GSON qual o nome deve procurar no formato serializado.
     @SerializedName("Title")
     private String nome;
     @SerializedName("Year")
@@ -16,6 +18,12 @@ public class Titulo implements Comparable<Titulo> {
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
         this.anoDeLancamento = anoDeLancamento;
+    }
+
+    public Titulo(TituloOmdb meuTituloOmdb) {
+        this.nome = meuTituloOmdb.title();
+        this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
+        this.duracaoEmMinutos = Integer.valueOf((meuTituloOmdb.runtime().substring(0, 2)));
     }
 
     public String getNome() {
@@ -76,6 +84,6 @@ public class Titulo implements Comparable<Titulo> {
     //Para tiramos do formato padrão do toString (br.com.alura.screenmatch.modelos.Titulo@4387b79e)
     @Override
     public String toString() {
-        return "Titulo: " + nome + " | anoDeLancamento = " + anoDeLancamento;
+        return "Titulo: " + nome + " | Ano de Lançamento = " + anoDeLancamento + " | " + "Duração: " + duracaoEmMinutos;
     }
 }
