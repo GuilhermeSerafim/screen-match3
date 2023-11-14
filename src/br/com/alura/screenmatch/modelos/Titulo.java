@@ -86,6 +86,6 @@ public class Titulo implements Comparable<Titulo> {
     //Para tiramos do formato padrão do toString (br.com.alura.screenmatch.modelos.Titulo@4387b79e)
     @Override
     public String toString() {
-        return "Titulo: " + nome + " | Ano de Lançamento = " + anoDeLancamento + " | " + "Duração: " + duracaoEmMinutos;
+        return "Titulo: " + nome + " | Ano de Lançamento = " + anoDeLancamento + " | " + "Duração: " + duracaoEmMinutos + " min";
     }
 }
