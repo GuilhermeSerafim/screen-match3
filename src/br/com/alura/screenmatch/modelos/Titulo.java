@@ -4,12 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo> {
     //Serializando dados
-    //Serializar é um verbo usado quando transformamos objetos ou estruturas de memória em texto - não importa se é JSON, binário ou XML.
     // Com a anotação @SerializedName avisamos ao GSON qual o nome deve procurar no formato serializado.
-    @SerializedName("Title")
-    private String nome;
-    @SerializedName("Year")
-    private int anoDeLancamento;
+    //Ou seja toda vez que eu me referir ao nome, estou me referindo ao Title do objeto JSON que pegamos da API
+    @SerializedName("Title") //Futuramente pode ser que esse 'Title' que colocamos estaticamente, seja 'MovieName'
+    private String nome;    //Ou seja, não é uma boa prática. Para isso criamos o nosso Record, para não digitarmos manualmente todos os SerializedName em cada variavel
+    @SerializedName("Year") //Pois futuramente, possa ser que essa classe consuma 2 API com nomenclaturas diferentes...
+    private int anoDeLancamento; //Logo o Record foi criado com o nome da mesma classe, e o nome da API. Criamos um construtor que recebe a API como parametro, e manipulamos esses dados
     private boolean incluidoNoPlano;
     private double somaDasAvaliacoes;
     private int totalDeAvaliacoes;

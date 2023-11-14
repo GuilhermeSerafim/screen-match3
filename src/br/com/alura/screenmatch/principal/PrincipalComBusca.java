@@ -21,7 +21,7 @@ public class PrincipalComBusca {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
         System.out.println("Digite um filme para busca: ");
-        var busca = leitura.nextLine();
+            var busca = leitura.nextLine();
 
         //Concatenação para tornar a busca dinâmica
         String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=c0e431f9";
@@ -45,11 +45,15 @@ public class PrincipalComBusca {
         String json = response.body();
         System.out.println(json);
 
-        //Configurando politica de nomenclatura
+        //Configurando politica de nomenclatura (pois quando resgatamos o objeto Json, a chave vem em maiscula)
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
         //Desserializa o JSON para um objeto Java da classe TituloOmdb
+        //Record é usado para armazenar, transferir dados
         TituloOmdb meuTituloOmdb = gson.fromJson(json, TituloOmdb.class);
         System.out.println(meuTituloOmdb);
+        //Ele não tem metodos do nosso Titulo, por isso criamos um construtor que recebe o Titulo Omdb para conseguir usarmos os metodos
+
+         //Obs: É padrão criamos um 'objetinho' só para consumir a api, porque o 'objetão' que vc quer ele é mais complexo
 
         Titulo meuTitulo = new Titulo(meuTituloOmdb);
         System.out.println("Titulo convertido:");
