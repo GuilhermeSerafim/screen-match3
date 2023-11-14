@@ -20,8 +20,10 @@ public class Titulo implements Comparable<Titulo> {
         this.anoDeLancamento = anoDeLancamento;
     }
 
+    //Construtor que aceita um objeto TituloOmdb
     public Titulo(TituloOmdb meuTituloOmdb) {
         this.nome = meuTituloOmdb.title();
+        //Conversão de uma String para um Objeto do tipo Integer (inteiro)
         this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
         this.duracaoEmMinutos = Integer.valueOf((meuTituloOmdb.runtime().substring(0, 2)));
     }
