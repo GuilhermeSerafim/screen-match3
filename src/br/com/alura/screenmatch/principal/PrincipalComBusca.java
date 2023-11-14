@@ -21,11 +21,11 @@ public class PrincipalComBusca {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner leitura = new Scanner(System.in);
         System.out.println("Digite um filme para busca: ");
-            var busca = leitura.nextLine();
+        var busca = leitura.nextLine();
 
         //Concatenação para tornar a busca dinâmica
         String endereco = "https://www.omdbapi.com/?t=" + busca + "&apikey=c0e431f9";
-
+        try {
         //Realiza a busca de acordo com o que foi digitado, criamos um client e realizamos uma requisição
         //Criando client para realizar a requisição
         HttpClient client = HttpClient.newHttpClient();
@@ -54,15 +54,17 @@ public class PrincipalComBusca {
 
         //Obs: É padrão criamos um 'objetinho' só para consumir a api, porque o 'objetão' que vc quer ele é mais complexo
 
-        try {
-        Titulo meuTitulo = new Titulo(meuTituloOmdb);
-        System.out.println("Titulo convertido:");
-        //Quando chamamos o println(x) ele automaticamente chama o toString do objeto x
-        System.out.println(meuTitulo);
-        //Se acontecer esse tipo de erro, faça isso
+
+            Titulo meuTitulo = new Titulo(meuTituloOmdb);
+            System.out.println("Titulo convertido:");
+            //Quando chamamos o println(x) ele automaticamente chama o toString do objeto x
+            System.out.println(meuTitulo);
+            //Se acontecer esse tipo de erro, faça isso
         } catch (NumberFormatException e) {
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro na busca, verifique a URL");
         } finally {
             System.out.println("O programa finalizou corretamente!");
         }
