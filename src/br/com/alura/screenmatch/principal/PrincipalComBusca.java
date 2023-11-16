@@ -26,9 +26,15 @@ public class PrincipalComBusca {
         Scanner leitura = new Scanner(System.in);
         String busca = "";
         List<Titulo> titulos = new ArrayList<>();
+        //Configurando política de nomenclatura (pois quando resgatamos o objeto Json, a chave vem em maiscula)
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setPrettyPrinting() //Facilitar leitura do JSON
+                .create();
+
 
         while (!busca.equalsIgnoreCase("sair")) {
-            System.out.println("Digite um filme para busca: ");
+            System.out.println("Digite um filme para busca, ou sair para encerrar a busca: ");
             busca = leitura.nextLine();
 
             if(busca.equalsIgnoreCase("sair")) {
@@ -58,8 +64,6 @@ public class PrincipalComBusca {
                 String json = response.body();
                 System.out.println(json);
 
-                //Configurando politica de nomenclatura (pois quando resgatamos o objeto Json, a chave vem em maiscula)
-                Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
                 //Desserializa o JSON para um objeto Java da classe TituloOmdb
                 TituloOmdb meuTituloOmdb = gson.fromJson(json, TituloOmdb.class); //Criamos esse record, só para consumir a API
                 System.out.println(meuTituloOmdb);
@@ -91,6 +95,13 @@ public class PrincipalComBusca {
             }
         }
         System.out.println(titulos);
+        FileWriter escrita = new FileWriter("filmes.json");
+        //Queremos essa lista em JSON
+        //Serializando titulos de string para json
+        escrita.write(gson.toJson(titulos)); //Se eu colocar apenas titulos aqui dentro, ele vai chamar o toString dessa lista e vai mostrar exatamente o que vimos no println (não é o que queremos)
+        escrita.close();
         System.out.println("O programa finalizou corretamente!");
+
+        //Obs: Esse json gerado, pode ser o que o front vai consumir
     }
 }
