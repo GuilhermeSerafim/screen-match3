@@ -1,15 +1,18 @@
 package br.com.alura.screenmatch.modelos;
 
+import br.com.alura.screenmatch.excecao.ErroDeConversaoDeAnoException;
 import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo> {
     //Serializando dados
     // Com a anotação @SerializedName avisamos ao GSON qual o nome deve procurar no formato serializado.
-    //Ou seja toda vez que eu me referir ao nome, estou me referindo ao Title do objeto JSON que pegamos da API
-    @SerializedName("Title") //Futuramente pode ser que esse 'Title' que colocamos estaticamente, seja 'MovieName'
-    private String nome;    //Ou seja, não é uma boa prática. Para isso criamos o nosso Record, para não digitarmos manualmente todos os SerializedName em cada variavel
-    @SerializedName("Year") //Pois futuramente, possa ser que essa classe consuma 2 API com nomenclaturas diferentes...
-    private int anoDeLancamento; //Logo o Record foi criado com o nome da mesma classe, e o nome da API. Criamos um construtor que recebe a API como parametro, e manipulamos esses dados
+//    //Ou seja toda vez que eu me referir ao nome, estou me referindo ao Title do objeto JSON que pegamos da API
+//    @SerializedName("Title") //Futuramente pode ser que esse 'Title' que colocamos estaticamente, seja 'MovieName'
+//    private String nome;    //Ou seja, não é uma boa prática. Para isso criamos o nosso Record, para não digitarmos manualmente todos os SerializedName em cada variavel
+//    @SerializedName("Year") //Pois futuramente, possa ser que essa classe consuma 2 API com nomenclaturas diferentes...
+//    private int anoDeLancamento; //Logo o Record foi criado com o nome da mesma classe, e o nome da API. Criamos um construtor que recebe a API como parametro, e manipulamos esses dados
+    private String nome;
+    private int anoDeLancamento;
     private boolean incluidoNoPlano;
     private double somaDasAvaliacoes;
     private int totalDeAvaliacoes;
@@ -23,6 +26,12 @@ public class Titulo implements Comparable<Titulo> {
     //Construtor que aceita um objeto TituloOmdb
     public Titulo(TituloOmdb meuTituloOmdb) {
         this.nome = meuTituloOmdb.title();
+
+        //Criando nossa exceção
+        if(meuTituloOmdb.year().length() > 4) {
+            throw new ErroDeConversaoDeAnoException("Não consegui converter o ano, pois tem mais de 4 caracteres");
+
+        }
         //Conversão de uma String para um Objeto do tipo Integer (inteiro)
         this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.year());
         this.duracaoEmMinutos = Integer.valueOf((meuTituloOmdb.runtime().substring(0, 2)));

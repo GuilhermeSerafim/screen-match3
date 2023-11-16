@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.principal;
 
+import br.com.alura.screenmatch.excecao.ErroDeConversaoDeAnoException;
 import br.com.alura.screenmatch.modelos.Titulo;
 import br.com.alura.screenmatch.modelos.TituloOmdb;
 import com.google.gson.FieldNamingPolicy;
@@ -66,7 +67,12 @@ public class PrincipalComBusca {
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println("Erro na busca, verifique a URL");
-        } finally {
+        } catch (ErroDeConversaoDeAnoException e) {
+            System.out.println(e.getMessage());
+            //O ideal aqui é tratar o erro, não exibir uma mensagem apenas
+        }
+
+        finally {
             System.out.println("O programa finalizou corretamente!");
         }
     }
