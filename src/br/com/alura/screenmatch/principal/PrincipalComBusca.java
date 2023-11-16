@@ -7,6 +7,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -61,7 +62,13 @@ public class PrincipalComBusca {
             System.out.println("Titulo convertido:");
             //Quando chamamos o println(x) ele automaticamente chama o toString do objeto x
             System.out.println(meuTitulo);
-            //Se acontecer esse tipo de erro, faça isso'
+
+            //Gravação de dados em um arquivo
+            FileWriter escrita = new FileWriter("filmes.txt");
+            escrita.write(meuTitulo.toString());
+            escrita.close();
+
+            //'Se acontecer esse tipo de erro, faça isso'
         } catch (NumberFormatException e) {
             System.out.println("Aconteceu um erro: ");
             System.out.println(e.getMessage());

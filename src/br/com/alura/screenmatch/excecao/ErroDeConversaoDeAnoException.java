@@ -1,5 +1,6 @@
 package br.com.alura.screenmatch.excecao;
 
+//RuntimeException é uma exceção unchecked exception (exceção não verificada)
 public class ErroDeConversaoDeAnoException extends RuntimeException {
     private String mensagem;
     public ErroDeConversaoDeAnoException(String mensagem) {
