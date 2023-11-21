@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//Essa classe foi aulas práticas, tem mais comentario, logo, facilita o entendimento
+
 //Revisar até absorver tudo! Depois passe para próxima parte
 public class PrincipalComBusca {
     //thwrows - Não vamos fazer nada em relação ao erro e quem chamou que será delegada a tarefa.
