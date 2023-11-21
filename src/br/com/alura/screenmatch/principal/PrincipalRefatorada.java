@@ -9,7 +9,6 @@ public class PrincipalRefatorada {
     public static void main(String[] args) throws IOException, InterruptedException {
         BuscarTitulo busca = new BuscarTitulo();
         Converter converter = new Converter();
-
         String resposta = converter.converteJsonParaObjeto(busca);
     }
 }
