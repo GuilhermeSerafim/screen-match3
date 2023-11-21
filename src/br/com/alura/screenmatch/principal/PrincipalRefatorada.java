@@ -9,9 +9,9 @@ import java.io.IOException;
 public class PrincipalRefatorada {
     public static void main(String[] args) throws IOException, InterruptedException {
         FileWriter escrita = new FileWriter("titulos.json");
-        Gson gson = new Gson();
+        Gson conversao = new Gson();
         ListaDeTitulos listaDeTitulos = new ListaDeTitulos();
-        escrita.write(gson.toJson(listaDeTitulos.listarTitulos()));
+        escrita.write(conversao.toJson(listaDeTitulos.listarTitulos())); //Aqui poderia ser consumida pelo front
         escrita.close();
         System.out.println("O programa finalizou corretamente!");
     }
