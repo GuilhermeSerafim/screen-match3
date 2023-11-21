@@ -39,7 +39,6 @@ public class BuscarTitulo {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString()); //ofString - converte em String
 
             String respostaEmString = response.body();
-            System.out.println(respostaEmString);
             return respostaEmString;
             //Tratamento de algumas exceptions
             } catch (NumberFormatException e) {
