@@ -9,7 +9,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ConsultaCep {
-    public Endereco consultaEndereco(String cep) {
+    public Endereco buscaEndereco(String cep) {
         URI endereco = URI.create("https://viacep.com.br/ws/" + cep + "/json");
 
         HttpClient client = HttpClient.newHttpClient();
