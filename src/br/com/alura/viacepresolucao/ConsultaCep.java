@@ -19,7 +19,7 @@ public class ConsultaCep {
             HttpResponse<String> response = HttpClient
                     .newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
-        return new Gson().fromJson(response.body(), Endereco.class);
+            return new Gson().fromJson(response.body(), Endereco.class);
         } catch (Exception e) {
             throw new RuntimeException("Não consegui obter o endereco, a partir desse cep");
         }

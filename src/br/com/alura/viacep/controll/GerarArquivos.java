@@ -1,13 +1,14 @@
-package src.br.com.alura.viacepresolucao;
+package src.br.com.alura.viacep.controll;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import src.br.com.alura.viacep.model.ClienteEnderecoViaCep;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class GeradorDeArquivos {
-    public void salvaJson(Endereco endereco) throws IOException {
+public class GerarArquivos {
+    public void salvaJson(ClienteEnderecoViaCep endereco) throws IOException {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
