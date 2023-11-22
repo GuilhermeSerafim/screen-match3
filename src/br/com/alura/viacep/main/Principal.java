@@ -39,9 +39,14 @@ public class Principal {
             ClienteEnderecoViaCep viaCep = gson.fromJson(extraindoCorpoDaRequisicao, ClienteEnderecoViaCep.class);
             ClienteEndereco clienteEndereco = new ClienteEndereco(viaCep);
             clientes.add(clienteEndereco);
+            System.out.println(clienteEndereco);
         }
 
-        //Convertendo para json
+        System.out.println("");
+        System.out.println("Todos os seus endereços com base no cep: ");
+        System.out.println(clientes);
+
+        //Convertendo objeto para json
         escrita.write(gson.toJson(clientes));
         escrita.close();
     }
