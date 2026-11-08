@@ -23,6 +23,12 @@ import java.util.Scanner;
 public class PrincipalComBusca {
     //thwrows - Não vamos fazer nada em relação ao erro e quem chamou que será delegada a tarefa.
     public static void main(String[] args) throws IOException, InterruptedException {
+        String omdbApiKey = System.getenv("OMDB_API_KEY");
+        if (omdbApiKey == null || omdbApiKey.isBlank()) {
+            throw new IllegalStateException("Configure OMDB_API_KEY no ambiente antes de executar a busca.");
+        }
+        omdbApiKey = omdbApiKey.trim();
+
         Scanner leitura = new Scanner(System.in);
         String busca = "";
         List<Titulo> titulos = new ArrayList<>();
@@ -43,7 +49,7 @@ public class PrincipalComBusca {
 
             //Concatenação para tornar a busca dinâmica
             //Replace trata se caso for um filme com espaçamento, ele apenas junta, pois na url não pode ter espaços
-            String endereco = "https://www.omdbapi.com/?t=" + busca.replace(" ", "+") + "&apikey=c0e431f9";
+            String endereco = "https://www.omdbapi.com/?t=" + busca.replace(" ", "+") + "&apikey=" + omdbApiKey;
             try {
                 //Realiza a busca de acordo com o que foi digitado, criamos um client e realizamos uma requisição
                 //Criando client para realizar a requisição
